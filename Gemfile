@@ -8,7 +8,11 @@ gem 'rails', '3.2.9'
 gem 'sqlite3'
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.4"
+  gem 'rspec-rails', "~> 2.4"
+end
+
+group :test do
+  gem 'capybara'
 end
 
 # Gems used only for assets and not required
