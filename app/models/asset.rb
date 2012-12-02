@@ -6,7 +6,7 @@ class Asset
 
   def initialize(symbol, shares, price, asset_class)
     @symbol = symbol
-    @shares = shares
+    @shares = shares.round(3)
     @price = price
     @asset_class = asset_class
   end
