@@ -16,7 +16,7 @@
     <td><%= entry.price.format %></td>
     <td><%= entry.value.format %> </td>
     <td><%= number_to_percentage((entry.value / @portfolio.value) * 100, :precision => 1) %></td>
-    <td><%= link_to "Edit", edit_portfolio_asset_path(params[:id], :symbol => entry.symbol) %></td>
+    <td><%= link_to "Edit", edit_portfolio_asset_path(params[:id], entry.symbol) %></td>
   </tr>
 <% end %>
 </table>
