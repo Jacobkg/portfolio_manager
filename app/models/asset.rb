@@ -1,5 +1,7 @@
 class Asset
 
+  CLASSES = [:stock, :bond, :cash]
+
   attr_reader :symbol, :shares, :price, :asset_class
 
   def initialize(symbol, shares, price, asset_class)
