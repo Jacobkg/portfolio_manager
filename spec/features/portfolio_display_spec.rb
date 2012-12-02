@@ -4,7 +4,7 @@ feature "Displaying Portfolio Contents" do
 
   scenario "Total and Percentage is displayed for each asset in portfolio" do
     #Given a portfolio
-    portfolio = Portfolio.new("User").add_stock("AAPL", 10, Money.new(130)).add_stock("GOOG", 25, Money.new(250))
+    portfolio = Portfolio.new("User", [Asset.new("AAPL", 10, Money.new(130), :stock), Asset.new("GOOG", 25, Money.new(250), :stock)])
     id = PortfolioRepository.save(portfolio)
 
     #When the user asks to update prices
@@ -20,10 +20,10 @@ feature "Displaying Portfolio Contents" do
 
   scenario "Assets seperated into Stocks and Bonds with Percentages" do
     #Given a portfolio with stocks and bonds
-    portfolio = Portfolio.new("User").add_stock("AAPL", 10, Money.new(130)) #$13
-                                     .add_stock("GOOG", 5, Money.new(250)) #$12.5
-                                     .add_bond("VFIUX", 12, Money.new(10)) #$1.20
-                                     .add_bond("VCADX", 6, Money.new(18)) #$1.08
+    portfolio = Portfolio.new("User", [Asset.new("AAPL", 10, Money.new(130), :stock), #$13
+                                       Asset.new("GOOG", 5, Money.new(250), :stock), #$12.5
+                                       Asset.new("VFIUX", 12, Money.new(10), :bond), #$1.20
+                                       Asset.new("VCADX", 6, Money.new(18), :bond)]) #$1.08
     id = PortfolioRepository.save(portfolio) # Total is $27.78
 
     visit "/portfolios/#{id}"

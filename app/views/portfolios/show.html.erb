@@ -10,10 +10,10 @@
     <th>Percentage</th>
     <th></th>
   </tr>
-  <% [:stocks, :bonds].each do |asset_class| %>
-    <tbody class='<%= asset_class %>'>
-      <tr><th><%= asset_class.to_s.titleize %> (<%= number_to_percentage(@portfolio.send(asset_class).value / @portfolio.value * 100, :precision => 1) %>)</th></tr>
-      <% @portfolio.send(asset_class).each do |entry| %>
+  <% [:stock, :bond].each do |asset_class| %>
+    <tbody class='<%= asset_class.to_s.pluralize %>'>
+      <tr><th><%= asset_class.to_s.pluralize.titleize %> (<%= number_to_percentage(@portfolio.assets_of_type(asset_class).value / @portfolio.value * 100, :precision => 1) %>)</th></tr>
+      <% @portfolio.assets_of_type(asset_class).each do |entry| %>
         <tr>
           <td><%= entry.symbol %></td>
           <td><%= format_decimal(entry.shares) %></td>

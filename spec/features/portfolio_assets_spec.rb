@@ -45,7 +45,7 @@ feature "Changing the asset makeup of a Portfolio" do
 
   scenario "User edits an asset in the portfolio" do
     #Given a portfolio
-    portfolio = Portfolio.new("User").add_stock("XYZ", 10, Money.new(20))
+    portfolio = Portfolio.new("User", [Asset.new("XYZ", 10, Money.new(20), :stock)])
     id = PortfolioRepository.save(portfolio)
 
     #When the user changes the number of shares of XYZ

@@ -4,13 +4,7 @@ class AssetsController < ApplicationController
 
   def create
     portfolio = PortfolioRepository.load(params[:portfolio_id])
-    if params[:asset_class] == "bond"
-      updated_portfolio = portfolio.add_bond(params[:symbol], params[:shares].to_f, Money.parse(params[:price]))
-    elsif params[:asset_class] == "stock"
-      updated_portfolio = portfolio.add_bond(params[:symbol], params[:shares].to_f, Money.parse(params[:price]))
-    else
-      raise "Unknown Asset Class"
-    end
+    updated_portfolio = portfolio.add(Asset.new(params[:symbol], params[:shares].to_f, Money.parse(params[:price]), params[:asset_class].to_sym))
     saved_id = PortfolioRepository.save(updated_portfolio)
     redirect_to portfolio_url(saved_id)
   end

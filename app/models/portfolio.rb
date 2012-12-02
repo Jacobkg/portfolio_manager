@@ -21,20 +21,12 @@ class Portfolio
     @entries.select {|n| n.symbol == symbol}.first
   end
 
-  def bonds
-    Portfolio.new("#{@name} - Bonds", @entries.select {|n| n.asset_class == :bond })
+  def assets_of_type(asset_class)
+    Portfolio.new("#{@name} - #{asset_class}", @entries.select {|n| n.asset_class == asset_class })
   end
 
-  def stocks
-    Portfolio.new("#{@name} - Stocks", @entries.select {|n| n.asset_class == :stock })
-  end
-
-  def add_bond(symbol, shares, price)
-    add(symbol, shares, price, :bond)
-  end
-
-  def add_stock(symbol, shares, price)
-    add(symbol, shares, price, :stock)
+  def add(asset)
+    Portfolio.new(name, @entries + [asset])
   end
 
   def update(symbol, shares, price)
@@ -51,11 +43,5 @@ class Portfolio
     return false unless other.is_a? Portfolio
     self.name == other.name && self.entries == other.entries
   end
-
-  private
-
-    def add(symbol, shares, price, asset_class = :stock)
-      Portfolio.new(name, @entries + [Asset.new(symbol, shares, price, asset_class)])
-    end
 
 end

@@ -5,7 +5,8 @@ feature "Updating Portfolio prices from iternet" do
   scenario "User asks to update prices" do
     VCR.use_cassette('Internet Stock Quotes') do
       #Given a portfolio
-      portfolio = Portfolio.new("User").add_stock("AAPL", 10, Money.new(100)).add_stock("GOOG", 25, Money.new(250))
+      portfolio = Portfolio.new("User", [Asset.new("AAPL", 10, Money.new(100), :stock),
+                                         Asset.new("GOOG", 25, Money.new(250), :stock)])
       id = PortfolioRepository.save(portfolio)
 
       #When the user asks to update prices
