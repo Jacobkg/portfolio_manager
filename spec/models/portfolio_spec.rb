@@ -1,6 +1,7 @@
 require 'portfolio'
 require 'asset'
 require 'money'
+require 'fake_stock_ticker'
 
 describe Portfolio do
 

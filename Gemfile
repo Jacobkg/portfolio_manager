@@ -7,6 +7,7 @@ gem 'rails', '3.2.9'
 
 gem 'sqlite3'
 gem 'money'
+gem 'stock_quote'
 
 group :test, :development do
   gem 'rspec-rails', "~> 2.4"

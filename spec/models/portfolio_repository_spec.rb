@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'fake_stock_ticker'
 
 describe PortfolioRepository do
 
@@ -24,6 +25,14 @@ describe PortfolioRepository do
     portfolio = Portfolio.new("My Portfolio").add("ABC", 10, Money.new(5))
     PortfolioRepository.save(portfolio)
     updated_portfolio = portfolio.add("XYZ", 25, Money.new(10))
+    saved_id = PortfolioRepository.save(updated_portfolio)
+    PortfolioRepository.load(saved_id).should == updated_portfolio
+  end
+
+  it "can update assets in a portfolio" do
+    portfolio = Portfolio.new("My Portfolio").add("ABC", 10, Money.new(5))
+    PortfolioRepository.save(portfolio)
+    updated_portfolio = portfolio.update_prices(FakeStockTicker.new({"ABC" => Money.new(123)}))
     saved_id = PortfolioRepository.save(updated_portfolio)
     PortfolioRepository.load(saved_id).should == updated_portfolio
   end

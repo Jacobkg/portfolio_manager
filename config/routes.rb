@@ -1,5 +1,8 @@
 PortfolioManager::Application.routes.draw do
   resources :portfolios do
+    member do
+      post 'price_update'
+    end
     resources :assets
   end
 
