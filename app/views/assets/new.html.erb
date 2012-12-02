@@ -1,0 +1,13 @@
+<%= form_tag(portfolio_assets_path(params[:portfolio_id])) do %>
+
+  <%= label_tag(:symbol) %>
+  <%= text_field_tag(:symbol) %><br>
+
+  <%= label_tag(:shares) %>
+  <%= text_field_tag(:shares) %><br>
+
+  <%= label_tag(:price) %>
+  <%= text_field_tag(:price) %><br>
+
+  <%= submit_tag("Add to Portfolio") %>
+<% end %>

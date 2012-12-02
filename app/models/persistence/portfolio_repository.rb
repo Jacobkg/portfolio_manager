@@ -1,9 +1,12 @@
 class PortfolioRepository
 
   def self.save(portfolio)
-    record = PortfolioRecord.create! :name => portfolio.name
+    existing_portfolio = PortfolioRecord.find_by_name(portfolio.name)
+    record = existing_portfolio || PortfolioRecord.create!(:name => portfolio.name)
     portfolio.entries.each do |entry|
-      record.assets.create! :symbol => entry.symbol, :shares => entry.shares, :price_in_cents => entry.price.cents
+      unless record.assets.find_by_symbol(entry.symbol)
+        record.assets.create! :symbol => entry.symbol, :shares => entry.shares, :price_in_cents => entry.price.cents
+      end
     end
     record.id
   end

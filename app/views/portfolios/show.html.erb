@@ -1,1 +1,7 @@
-<%= @portfolio.name %>
+<h1><%= @portfolio.name %></h1>
+
+<% @portfolio.entries.each do |entry| %>
+  <%= entry.symbol %> <%= entry.shares %> <%= entry.price.format %><br>
+<% end %>
+<br>
+<%= link_to "Add Asset", new_portfolio_asset_path(params[:id]) %>

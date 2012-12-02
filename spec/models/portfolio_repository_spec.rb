@@ -13,4 +13,19 @@ describe PortfolioRepository do
     PortfolioRepository.load(charles_portfolio_id).should == charles_portfolio
   end
 
+  it "updates portfolio if already exists" do
+    portfolio = Portfolio.new("My Portfolio")
+    first_save_id = PortfolioRepository.save(portfolio)
+    second_save_id = PortfolioRepository.save(portfolio.add("ABC", 10, Money.new(5)))
+    first_save_id.should == second_save_id
+  end
+
+  it "can add assets to existing portfolio" do
+    portfolio = Portfolio.new("My Portfolio").add("ABC", 10, Money.new(5))
+    PortfolioRepository.save(portfolio)
+    updated_portfolio = portfolio.add("XYZ", 25, Money.new(10))
+    saved_id = PortfolioRepository.save(updated_portfolio)
+    PortfolioRepository.load(saved_id).should == updated_portfolio
+  end
+
 end
