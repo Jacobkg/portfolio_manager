@@ -35,7 +35,12 @@ class Portfolio
   end
 
   def update_prices(stock_ticker = StockTicker.new)
-    updated_entries = @entries.map { |asset| Asset.new(asset.symbol, asset.shares, stock_ticker.get_price(asset.symbol), asset.asset_class) }
+    updated_entries = []
+    @entries.each do |entry|
+      updated_price = stock_ticker.get_price(entry.symbol)
+      updated_price = entry.price if updated_price == Money.new(0)
+      updated_entries << Asset.new(entry.symbol, entry.shares, updated_price, entry.asset_class)
+    end
     Portfolio.new(@name, updated_entries)
   end
 

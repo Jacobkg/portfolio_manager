@@ -34,6 +34,15 @@ describe Portfolio do
     updated_portfolio.value.should == Money.new(5852800)
   end
 
+  it "won't update price if its 0" do
+    portfolio = Portfolio.new("Name", [Asset.new("AAPL", 100, Money.new(100), :cash)])
+
+    fake_stock_ticker = FakeStockTicker.new({"AAPL" => Money.new(0)})
+
+    updated_portfolio = portfolio.update_prices(fake_stock_ticker)
+    updated_portfolio.value.should == Money.new(10000)
+  end
+
   it "can retrieve asset by symbol" do
     portfolio = Portfolio.new("Name", [Asset.new("AAPL", 100, Money.new(100), :stock),
                                        Asset.new("BAZ", 120, Money.new(50), :stock)])
