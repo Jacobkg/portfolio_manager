@@ -9,8 +9,17 @@ class Portfolio
     @entries.inject(Money.new(0)) { |sum, x| sum + x.value }
   end
 
+  def asset(symbol)
+    @entries.select {|n| n.symbol == symbol}.first
+  end
+
   def add(symbol, shares, price)
     Portfolio.new(name, @entries + [Asset.new(symbol, shares, price)])
+  end
+
+  def update(symbol, shares, price)
+    @entry = asset(symbol)
+    Portfolio.new(name, @entries - [@entry] + [Asset.new(symbol, shares, price)])
   end
 
   def update_prices(stock_ticker = StockTicker.new)

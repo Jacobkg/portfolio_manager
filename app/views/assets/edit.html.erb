@@ -1,0 +1,13 @@
+<%= form_tag(portfolio_asset_path(params[:portfolio_id]), :method => :put) do %>
+
+  <%= label_tag(:symbol) %>
+  <%= text_field_tag(:symbol, @entry.symbol) %><br>
+
+  <%= label_tag(:shares) %>
+  <%= text_field_tag(:shares, @entry.shares) %><br>
+
+  <%= label_tag(:price) %>
+  <%= text_field_tag(:price, @entry.price.format) %><br>
+
+  <%= submit_tag("Save") %>
+<% end %>

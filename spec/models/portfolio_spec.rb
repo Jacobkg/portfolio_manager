@@ -24,6 +24,17 @@ describe Portfolio do
     updated_portfolio.value.should == Money.new(5852800)
   end
 
+  it "can retrieve asset by symbol" do
+    portfolio = Portfolio.new("Name").add("AAPL", 100, Money.new(100)).add("BAZ", 120, Money.new(50))
+    portfolio.asset("BAZ").should == Asset.new("BAZ", 120, Money.new(50))
+  end
+
+  it "can update an asset" do
+    portfolio = Portfolio.new("Name").add("AAPL", 100, Money.new(100))
+    portfolio = portfolio.update("AAPL", 120, Money.new(500))
+    portfolio.value.should == Money.new(60000)
+  end
+
 end
 
 class FakeStockTicker
