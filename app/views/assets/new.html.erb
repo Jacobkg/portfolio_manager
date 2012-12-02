@@ -9,5 +9,8 @@
   <%= label_tag(:price) %>
   <%= text_field_tag(:price) %><br>
 
+  <%= label_tag(:asset_class) %>
+  <%= select_tag(:asset_class, options_for_select([["Stock", :stock], ["Bond", :bond]])) %><br>
+
   <%= submit_tag("Add to Portfolio") %>
 <% end %>

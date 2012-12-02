@@ -29,25 +29,21 @@ class Portfolio
     Portfolio.new("#{@name} - Stocks", @entries.select {|n| n.asset_class == :stock })
   end
 
-  def add(symbol, shares, price)
-    Portfolio.new(name, @entries + [Asset.new(symbol, shares, price)])
-  end
-
   def add_bond(symbol, shares, price)
-    Portfolio.new(name, @entries + [Asset.bond(symbol, shares, price)])
+    add(symbol, shares, price, :bond)
   end
 
   def add_stock(symbol, shares, price)
-    Portfolio.new(name, @entries + [Asset.stock(symbol, shares, price)])
+    add(symbol, shares, price, :stock)
   end
 
   def update(symbol, shares, price)
     @entry = asset(symbol)
-    Portfolio.new(name, @entries - [@entry] + [Asset.new(symbol, shares, price)])
+    Portfolio.new(name, @entries - [@entry] + [Asset.new(symbol, shares, price, @entry.asset_class)])
   end
 
   def update_prices(stock_ticker = StockTicker.new)
-    updated_entries = @entries.map { |asset| Asset.new(asset.symbol, asset.shares, stock_ticker.get_price(asset.symbol)) }
+    updated_entries = @entries.map { |asset| Asset.new(asset.symbol, asset.shares, stock_ticker.get_price(asset.symbol), asset.asset_class) }
     Portfolio.new(@name, updated_entries)
   end
 
@@ -55,5 +51,11 @@ class Portfolio
     return false unless other.is_a? Portfolio
     self.name == other.name && self.entries == other.entries
   end
+
+  private
+
+    def add(symbol, shares, price, asset_class = :stock)
+      Portfolio.new(name, @entries + [Asset.new(symbol, shares, price, asset_class)])
+    end
 
 end

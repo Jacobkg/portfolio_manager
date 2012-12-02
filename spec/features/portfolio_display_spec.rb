@@ -4,7 +4,7 @@ feature "Displaying Portfolio Contents" do
 
   scenario "Total and Percentage is displayed for each asset in portfolio" do
     #Given a portfolio
-    portfolio = Portfolio.new("User").add("AAPL", 10, Money.new(130)).add("GOOG", 25, Money.new(250))
+    portfolio = Portfolio.new("User").add_stock("AAPL", 10, Money.new(130)).add_stock("GOOG", 25, Money.new(250))
     id = PortfolioRepository.save(portfolio)
 
     #When the user asks to update prices
@@ -27,7 +27,6 @@ feature "Displaying Portfolio Contents" do
     id = PortfolioRepository.save(portfolio) # Total is $27.78
 
     visit "/portfolios/#{id}"
-    save_and_open_page
 
     within(".stocks") do
       page.should have_content "Stocks (91.8%)"

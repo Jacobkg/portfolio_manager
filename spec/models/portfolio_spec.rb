@@ -17,14 +17,14 @@ describe Portfolio do
 
   it "computes its value from the total of all assets" do
     portfolio = Portfolio.new("Name")
-    portfolio = portfolio.add("XYZ", 10, Money.new(150))
-    portfolio = portfolio.add("ABC", 15, Money.new(275))
+    portfolio = portfolio.add_stock("XYZ", 10, Money.new(150))
+    portfolio = portfolio.add_bond("ABC", 15, Money.new(275))
 
     portfolio.value.should == Money.new(5625)
   end
 
   it "can update the price of its assets from the internet" do
-    portfolio = Portfolio.new("Name").add("AAPL", 100, Money.new(100))
+    portfolio = Portfolio.new("Name").add_stock("AAPL", 100, Money.new(100))
     portfolio.value.should == Money.new(10000)
 
     fake_stock_ticker = FakeStockTicker.new({"AAPL" => Money.new(58528)})
@@ -35,12 +35,12 @@ describe Portfolio do
   end
 
   it "can retrieve asset by symbol" do
-    portfolio = Portfolio.new("Name").add("AAPL", 100, Money.new(100)).add("BAZ", 120, Money.new(50))
-    portfolio.asset("BAZ").should == Asset.new("BAZ", 120, Money.new(50))
+    portfolio = Portfolio.new("Name").add_stock("AAPL", 100, Money.new(100)).add_stock("BAZ", 120, Money.new(50))
+    portfolio.asset("BAZ").should == Asset.new("BAZ", 120, Money.new(50), :stock)
   end
 
   it "can update an asset" do
-    portfolio = Portfolio.new("Name").add("AAPL", 100, Money.new(100))
+    portfolio = Portfolio.new("Name").add_stock("AAPL", 100, Money.new(100))
     portfolio = portfolio.update("AAPL", 120, Money.new(500))
     portfolio.value.should == Money.new(60000)
   end

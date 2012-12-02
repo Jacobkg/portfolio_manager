@@ -9,5 +9,9 @@
   <%= label_tag(:price) %>
   <%= text_field_tag(:price, @entry.price.format) %><br>
 
+  <%= label_tag(:asset_class) %>:
+  <%= @entry.asset_class.to_s.titleize %><br>
+
   <%= submit_tag("Save") %>
+  <%= link_to "Cancel", portfolio_path(params[:portfolio_id]) %>
 <% end %>
