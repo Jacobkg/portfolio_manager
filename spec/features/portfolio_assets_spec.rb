@@ -29,13 +29,13 @@ feature "Changing the asset makeup of a Portfolio" do
     #When the user changes the number of shares of XYZ
     visit "/portfolios/#{id}"
     click_link "Edit"
-    fill_in "Shares", :with => "20"
+    fill_in "Shares", :with => "20.5"
     click_button "Save"
 
     #Then the new shares appear on the portfolio
     page.should have_content "XYZ"
-    page.should have_content "20"
-    page.should have_content "$4.00"
+    page.should have_content "20.5"
+    page.should have_content "$4.10"
   end
 
 end

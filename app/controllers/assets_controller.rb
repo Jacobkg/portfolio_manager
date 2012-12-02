@@ -4,7 +4,7 @@ class AssetsController < ApplicationController
 
   def create
     portfolio = PortfolioRepository.load(params[:portfolio_id])
-    updated_portfolio = portfolio.add(params[:symbol], params[:shares].to_i, Money.parse(params[:price]))
+    updated_portfolio = portfolio.add(params[:symbol], params[:shares].to_f, Money.parse(params[:price]))
     saved_id = PortfolioRepository.save(updated_portfolio)
     redirect_to portfolio_url(saved_id)
   end
@@ -17,7 +17,7 @@ class AssetsController < ApplicationController
   def update
     portfolio = PortfolioRepository.load(params[:portfolio_id])
     @entry = portfolio.asset(params[:symbol])
-    updated_portfolio = portfolio.update(params[:symbol], params[:shares].to_i, Money.parse(params[:price]))
+    updated_portfolio = portfolio.update(params[:symbol], params[:shares].to_f, Money.parse(params[:price]))
     saved_id = PortfolioRepository.save(updated_portfolio)
     redirect_to portfolio_url(saved_id)
   end

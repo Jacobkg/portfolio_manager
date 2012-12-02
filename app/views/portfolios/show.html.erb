@@ -12,7 +12,7 @@
 <% @portfolio.entries.each do |entry| %>
   <tr>
     <td><%= entry.symbol %></td>
-    <td><%= entry.shares %></td>
+    <td><%= format_decimal(entry.shares) %></td>
     <td><%= entry.price.format %></td>
     <td><%= entry.value.format %> </td>
     <td><%= number_to_percentage((entry.value / @portfolio.value) * 100, :precision => 1) %></td>
