@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202041909) do
+ActiveRecord::Schema.define(:version => 20121202055442) do
 
   create_table "asset_records", :force => true do |t|
     t.string   "symbol"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121202041909) do
     t.integer  "portfolio_record_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "asset_class"
   end
 
   create_table "portfolio_records", :force => true do |t|

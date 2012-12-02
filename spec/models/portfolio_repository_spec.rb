@@ -5,8 +5,8 @@ require 'fake_stock_ticker'
 describe PortfolioRepository do
 
   it "can save and retrieve portfolios by id" do
-    susan_portfolio = Portfolio.new("Susan").add("XYZ", 5.2, Money.new(10))
-    charles_portfolio = Portfolio.new("Charles").add("ABC", 10, Money.new(5))
+    susan_portfolio = Portfolio.new("Susan").add_stock("XYZ", 5.2, Money.new(10))
+    charles_portfolio = Portfolio.new("Charles").add_bond("ABC", 10, Money.new(5))
 
     susan_portfolio_id = PortfolioRepository.save(susan_portfolio)
     charles_portfolio_id = PortfolioRepository.save(charles_portfolio)

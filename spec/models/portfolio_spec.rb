@@ -5,6 +5,16 @@ require 'fake_stock_ticker'
 
 describe Portfolio do
 
+  describe "with no assets" do
+    it "has value 0" do
+      Portfolio.new("Foo").value.should == Money.new(0)
+    end
+
+    it "iterates as empty" do
+      Portfolio.new("Foo").to_a.should == []
+    end
+  end
+
   it "computes its value from the total of all assets" do
     portfolio = Portfolio.new("Name")
     portfolio = portfolio.add("XYZ", 10, Money.new(150))
@@ -33,6 +43,24 @@ describe Portfolio do
     portfolio = Portfolio.new("Name").add("AAPL", 100, Money.new(100))
     portfolio = portfolio.update("AAPL", 120, Money.new(500))
     portfolio.value.should == Money.new(60000)
+  end
+
+  it "can add a bond" do
+    portfolio = Portfolio.new("Name").add_bond("ABC", 10, Money.new(20))
+    portfolio.asset("ABC").asset_class.should == :bond
+  end
+
+  it "can add a stock" do
+    portfolio = Portfolio.new("Name").add_stock("ABC", 10, Money.new(20))
+    portfolio.asset("ABC").asset_class.should == :stock
+  end
+
+  it "can retrieve by stocks and bonds" do
+    portfolio = Portfolio.new("Name").add_stock("ABC", 10, Money.new(10))
+                                     .add_bond("XYZ", 10, Money.new(10))
+                                     .add_stock("IOU", 20, Money.new(8))
+    portfolio.stocks.map(&:symbol).should == ["ABC", "IOU"]
+    portfolio.bonds.map(&:symbol).should == ["XYZ"]
   end
 
 end

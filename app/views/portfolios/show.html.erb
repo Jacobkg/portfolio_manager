@@ -1,5 +1,6 @@
 <h1><%= @portfolio.name %></h1>
 
+<% if @portfolio.entries.size > 0 %>
 <table>
   <tr>
     <th>Symbol</th>
@@ -9,17 +10,23 @@
     <th>Percentage</th>
     <th></th>
   </tr>
-<% @portfolio.entries.each do |entry| %>
-  <tr>
-    <td><%= entry.symbol %></td>
-    <td><%= format_decimal(entry.shares) %></td>
-    <td><%= entry.price.format %></td>
-    <td><%= entry.value.format %> </td>
-    <td><%= number_to_percentage((entry.value / @portfolio.value) * 100, :precision => 1) %></td>
-    <td><%= link_to "Edit", edit_portfolio_asset_path(params[:id], entry.symbol) %></td>
-  </tr>
-<% end %>
+  <% [:stocks, :bonds].each do |asset_class| %>
+    <tbody class='<%= asset_class %>'>
+      <tr><th><%= asset_class.to_s.titleize %> (<%= number_to_percentage(@portfolio.send(asset_class).value / @portfolio.value * 100, :precision => 1) %>)</th></tr>
+      <% @portfolio.send(asset_class).each do |entry| %>
+        <tr>
+          <td><%= entry.symbol %></td>
+          <td><%= format_decimal(entry.shares) %></td>
+          <td><%= entry.price.format %></td>
+          <td><%= entry.value.format %> </td>
+          <td><%= number_to_percentage((entry.value / @portfolio.value) * 100, :precision => 1) %></td>
+          <td><%= link_to "Edit", edit_portfolio_asset_path(params[:id], entry.symbol) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
 </table>
+<% end %>
 <br>
 <%= link_to "Add Asset", new_portfolio_asset_path(params[:id]) %>
 <br><br>
