@@ -16,6 +16,8 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Gems used only for assets and not required

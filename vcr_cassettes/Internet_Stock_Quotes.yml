@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.google.com/ig/api?stock=AAPL
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      Content-Type:
+      - text/xml; charset=ISO-8859-1
+      Date:
+      - Sun, 02 Dec 2012 02:52:54 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Set-Cookie:
+      - PREF=ID=c6a9525461d30178:TM=1354416774:LM=1354416774:S=QyEB5Jzy_Dpa30xp; expires=Tue,
+        02-Dec-2014 02:52:54 GMT; path=/; domain=.google.com
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - igfe
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0"?><xml_api_reply version="1"><finance module_id="0"
+        tab_id="0" mobile_row="0" mobile_zipped="1" row="0" section="0" ><symbol data="AAPL"/><pretty_symbol
+        data="AAPL"/><symbol_lookup_url data="/finance?client=ig&amp;q=AAPL"/><company
+        data="Apple Inc."/><exchange data="Nasdaq"/><exchange_timezone data="ET"/><exchange_utc_offset
+        data="+05:00"/><exchange_closing data="960"/><divisor data="2"/><currency
+        data="USD"/><last data="585.28"/><high data="588.40"/><low data="582.68"/><volume
+        data="13974998"/><avg_volume data="22257"/><market_cap data="550568.24"/><open
+        data="586.79"/><y_close data="589.36"/><change data="-4.08"/><perc_change
+        data="-0.69"/><delay data="0"/><trade_timestamp data="Nov 30, 2012"/><trade_date_utc
+        data="20121130"/><trade_time_utc data="210003"/><current_date_utc data="20121202"/><current_time_utc
+        data="025254"/><symbol_url data="/finance?client=ig&amp;q=AAPL"/><chart_url
+        data="/finance/chart?q=NASDAQ:AAPL&amp;tlf=12"/><disclaimer_url data="/help/stock_disclaimer.html"/><ecn_url
+        data=""/><isld_last data=""/><isld_trade_date_utc data=""/><isld_trade_time_utc
+        data=""/><brut_last data=""/><brut_trade_date_utc data=""/><brut_trade_time_utc
+        data=""/><daylight_savings data="false"/></finance></xml_api_reply>
+    http_version: 
+  recorded_at: Sun, 02 Dec 2012 02:52:54 GMT
+- request:
+    method: get
+    uri: http://www.google.com/ig/api?stock=GOOG
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      Content-Type:
+      - text/xml; charset=ISO-8859-1
+      Date:
+      - Sun, 02 Dec 2012 02:52:54 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Set-Cookie:
+      - PREF=ID=0302092e5ba72cd0:TM=1354416774:LM=1354416774:S=ytq-64HxZ8gjkHRr; expires=Tue,
+        02-Dec-2014 02:52:54 GMT; path=/; domain=.google.com
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - igfe
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0"?><xml_api_reply version="1"><finance module_id="0"
+        tab_id="0" mobile_row="0" mobile_zipped="1" row="0" section="0" ><symbol data="GOOG"/><pretty_symbol
+        data="GOOG"/><symbol_lookup_url data="/finance?client=ig&amp;q=GOOG"/><company
+        data="Google Inc"/><exchange data="Nasdaq"/><exchange_timezone data="ET"/><exchange_utc_offset
+        data="+05:00"/><exchange_closing data="960"/><divisor data="2"/><currency
+        data="USD"/><last data="698.37"/><high data="699.22"/><low data="685.69"/><volume
+        data="3164441"/><avg_volume data="2905"/><market_cap data="229480.32"/><open
+        data="691.31"/><y_close data="691.89"/><change data="+6.48"/><perc_change
+        data="0.94"/><delay data="0"/><trade_timestamp data="Nov 30, 2012"/><trade_date_utc
+        data="20121130"/><trade_time_utc data="210003"/><current_date_utc data="20121202"/><current_time_utc
+        data="025254"/><symbol_url data="/finance?client=ig&amp;q=GOOG"/><chart_url
+        data="/finance/chart?q=NASDAQ:GOOG&amp;tlf=12"/><disclaimer_url data="/help/stock_disclaimer.html"/><ecn_url
+        data=""/><isld_last data=""/><isld_trade_date_utc data=""/><isld_trade_time_utc
+        data=""/><brut_last data=""/><brut_trade_date_utc data=""/><brut_trade_time_utc
+        data=""/><daylight_savings data="false"/></finance></xml_api_reply>
+    http_version: 
+  recorded_at: Sun, 02 Dec 2012 02:52:54 GMT
+recorded_with: VCR 2.3.0

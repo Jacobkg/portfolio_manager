@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'fake_stock_ticker'
 
+
 describe PortfolioRepository do
 
   it "can save and retrieve portfolios by id" do
