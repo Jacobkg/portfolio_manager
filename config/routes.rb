@@ -3,7 +3,7 @@ PortfolioManager::Application.routes.draw do
     member do
       post 'price_update'
     end
-    resources :assets, :constraints => {:id => /[A-Z]*/}
+    resources :assets, :constraints => {:id => /.*/}
   end
 
   # The priority is based upon order of creation:
