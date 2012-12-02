@@ -1,8 +1,23 @@
 <h1><%= @portfolio.name %></h1>
 
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Shares</th>
+    <th>Price</th>
+    <th>Value</th>
+    <th>Percentage</th>
+  </tr>
 <% @portfolio.entries.each do |entry| %>
-  <%= entry.symbol %> <%= entry.shares %> <%= entry.price.format %><br>
+  <tr>
+    <td><%= entry.symbol %></td>
+    <td><%= entry.shares %></td>
+    <td><%= entry.price.format %></td>
+    <td><%= entry.value.format %> </td>
+    <td><%= number_to_percentage((entry.value / @portfolio.value) * 100, :precision => 1) %></td>
+  </tr>
 <% end %>
+</table>
 <br>
 <%= link_to "Add Asset", new_portfolio_asset_path(params[:id]) %>
 <br><br>
